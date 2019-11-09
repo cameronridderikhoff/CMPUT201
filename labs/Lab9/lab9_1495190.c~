@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <rand.h>
+#include <stdbool.h>
+int main()
+{
+  int black, white, maxIt;
+  bool b1Black, b2Black;
+  printf("Enter the number of black and white beans: ");
+  scanf("%d%d", &black, &white);
+  maxIt=10000*(black+white);
+  for (int i=0; i<maxIt; i++)
+    {
+      int r1=rand(1000);
+      int r2=rand(1000);
+      if (r1>=500)
+	b1Black=true;
+      else
+	b1Black=false;
+      if (r2>=500)
+	b2Black=true;
+      else
+	b2Black=false;
+
+      if (b1Black==b2Black)
+	{//if they are the same color, throw them out
+	  if (b1Black)
+	      black-=2;
+	  else
+	    white-=2;
+	  black++;//add one black bean
+	}
+      else//if they are different colors put white one back, throw away black
+	  black--;
+
+      if !(black>0 && white>1)//we need at least one black bean and 
+	break; // if we can't continue the game, break out
+    }
+  return 0;
+}

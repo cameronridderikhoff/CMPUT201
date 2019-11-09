@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int main()
+{
+  int grade; //numbers
+  printf("Enter numerical grade: ");
+  scanf("%d",grade);
+  grade=grade/10;
+  switch(grade)
+    {
+    case 0:
+      printf("F");
+    case 1:
+      printf("F");
+    case 2:
+      printf("F");
+    case 3:
+      printf("F");
+    case 4:
+      printf("F");
+    case 5:
+      printf("F");
+    case 6:
+      printf("D");
+    case 7:
+      printf("C");
+    case 8:
+      printf("B");
+    case 9:
+      printf("A");
+    default:
+      printf("Error, incorrect grade inputted.");
+    }

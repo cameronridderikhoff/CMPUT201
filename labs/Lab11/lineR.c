@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "line.h"
+
+#define MAX_LINE_LEN 60
+
+int line_len = 0;
+int num_words = 0;
+
+static struct node { // create the linked list structure
+	struct node *next;
+	char word_str[];
+} *line = NULL;
+
+void clear_line(void) {
+	struct node *temp;
+
+  while (line) {
+    temp = line;
+    line = line->next;
+    free(temp);
+  }
+  line_len = 0;
+	num_words = 0;
+}
+
+void add_word(const char *word) {
+	int word_memory = strlen(word) + 1;
+
+  struct node *next_word;
+  if ((next_word = malloc(sizeof(struct node) + word_memory)) == NULL)
+    {
+      exit(1);
+    }
+  strcpy(next_word->word_str, word); // copy word into array
+  next_word->next = NULL; // then assign next as null
+
+  struct node **next_word_p = &line; // create new structure
+  while (*next_word_p) {
+    next_word_p = &(*next_word_p)->next; // iterate to null 'next'
+  }
+
+  *next_word_p = next_word; //assign next_word_p the word that is to be added
+  line_len += strlen(word);
+  if (num_words > 0)
+    {
+    line_len++; // add space for every word minus one
+    }
+	num_words++; //Increment number of words
+}
+
+int space_remaining(void) {
+	return MAX_LINE_LEN - line_len; // this function remains the same 
+}
+
+void write_line(void) {
+	int extra_spaces, spaces_to_insert, i;
+  int char_count = 0;
+  struct node *current = line;
+  extra_spaces = space_remaining();
+
+  while (char_count < line_len && current) {
+    printf("%s", current->word_str);
+    if (num_words > 1) {
+      spaces_to_insert = extra_spaces / (num_words - 1); // distribute spaces among words so that line is justified
+      for (i = 1; i <= spaces_to_insert + 1; i++)
+        putchar(' ');
+      extra_spaces -= spaces_to_insert;
+    }
+    char_count += strlen(current->word_str) + 1;
+    num_words--;
+    current = current->next; // move to next word
+  }
+putchar('\n');
+}
+
+void flush_line(void) {
+	if (line_len > 0) {
+    struct node *current = line;
+    int i;
+    for (i = 0, current = line; current; i++, current = current->next) {
+      if (i > 0 && current->next != NULL)
+        putchar(' ');
+      printf("%s ", current->word_str);
+    }
+  }
+  printf("\n");
+	clear_line();
+}

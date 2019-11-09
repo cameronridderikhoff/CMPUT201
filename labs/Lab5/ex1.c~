@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <math.h>
+//magic square
+int main()
+{
+  int n;
+  printf("This program creates a magic square of a specified size between 1 and 99.\n Enter size: ");
+  scanf("%d", &n);
+  int a[n][n];
+  mid=int(ceil(double(n/2)));
+  printf(mid);
+}

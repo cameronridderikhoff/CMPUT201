@@ -1,0 +1,48 @@
+#include <stdio.h>
+#define N 10
+
+void quicksort(int a[], int left, int right);
+int split(int a[], int left, int right);
+
+int main(void) {
+  int a[N];
+  int i;
+  printf("Enter %d numbers to be sorted: ", N);
+  for (i = 0; i < N; i++)
+    scanf("%d", &a[i]);
+  
+  quicksort(a, 0, N - 1);
+  printf("In sorted non-decreasing order:");
+  
+  for (i = 0; i < N; i++)
+    printf(" %d", a[i]);
+  
+  printf("\n");
+  return 0;
+}
+
+void quicksort(int a[], int left, int right)
+{
+  int middle;
+  if (left >= right) return;
+  middle = split(a, left, right);
+  quicksort(a, left, middle - 1);
+  quicksort(a, middle + 1, right);
+}
+
+int split(int a[], int left, int right)
+{
+  int pivot;
+  pivot = a[left];
+  for (;;)
+    {
+      if (left == right) break;
+      while (a[right] > pivot) right--;
+      a[left++] = a[right];
+      if (left == right) break;
+      while (a[left] <= pivot) left++;
+      a[right--] = a[left];
+    }
+  a[left] = pivot;
+  return left;
+}

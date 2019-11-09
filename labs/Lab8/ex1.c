@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+bool isPalindrome(const char *msg)
+{
+  int len=strlen(msg);
+  int j=len-1;//the last char in msg
+
+  for (int i=0; i<len; i++)
+    {
+      if (*(msg+j) != *(msg+i))
+	{
+	  return false;
+	}
+      j--;
+    }
+  return true;
+}
+
+int main()
+{
+  int n=51;
+  char msg[n];
+  printf("Enter a message (50 char or less): ");
+  
+  int ch, i = 0;
+  while ((ch = getchar()) != '\n')
+    {
+      if (i < n)
+	{
+	  if (ch != ' ' && ch != '\t') // not whitespace
+	    {
+	      if (ch>='A' && ch<='Z')//is a character
+		{
+		  ch+=32;
+		  *(msg+i++) = ch;
+		}
+	      else if  (ch>='a' && ch<='z')
+		{
+		  *(msg+i++) = ch;
+		}
+	    }
+	}
+    }
+
+  if (isPalindrome(msg))
+    printf("Palindrome.\n");
+  else
+    printf("Not a palindrome.\n");
+  return 0;
+}
+

@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main()
+{
+  int a, b; //numbers
+  printf("Enter two ints: ");
+  scanf("%d%d", &a, &b);
+  int i=0;
+  if (a<b)
+    {//makes a the larger int if it isn't already
+      int temp=a;
+      a=b;
+      b=temp;
+    }
+  while (b!=0)
+    {
+      i=a%b;
+      b=a;
+      a=i;
+    }
+  printf("GCD: %d", a);
+}

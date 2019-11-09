@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int main()
+{
+  int a, b; //numbers
+  printf("Enter two ints: ");
+  if(scanf("%d/%d", &a, &b)==1)
+    {
+      int i=0;
+      if (a<b)
+	{//makes a the larger int if it isn't already
+	  int temp=a;
+	  a=b;
+	  b=temp;
+	}
+      while (b!=0)
+	{
+	  i=a%b;
+	  a=b;
+	  b=i;
+	}
+      //a now contains the GCD
+    }
+  else
+    {
+      printf("Incorrect input.");
+      return-1;
+    }
+}

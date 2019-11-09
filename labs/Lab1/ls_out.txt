@@ -1,0 +1,11 @@
+total 15K
+1.0K C:\nppdf32Log\debuglog.txt
+1.5K CMPUT201
+1.5K Desktop
+1.5K Documents
+1.5K Downloads
+1.5K Music
+1.5K Pictures
+1.5K Public
+1.5K Templates
+1.5K Videos

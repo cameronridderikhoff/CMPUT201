@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main()
+{
+  char temp[21];
+  char *parray[100];
+  int i=0;
+  printf("Enter word: ");
+  
+  while(fgets(temp, 21, stdin)!=NULL)
+    {
+      printf("Enter word: ");
+      *parray[i]=malloc(strlen(temp)+1); //+1 for null char
+      printf("%s", parray[i]);
+      i++;
+    }
+  
+  return 0;
+}

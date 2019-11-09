@@ -1,0 +1,45 @@
+#include <stdio.h>
+int n;
+void makeHeap(int A[]);
+void main()
+{
+  printf("Enter the number of ints: ");
+  scanf("%d", &n);
+  int A[n];
+  printf("Enter the %d ints to be sorted ", n);
+  for (int i=0; i<n; i++)
+    {
+      scanf("%d", &A[i]);
+    }
+  //create max heap
+
+  makeHeap(A);
+  
+  return;
+}
+void makeHeap(int A[])
+{
+  for (int i= floor(n/2); i>0; i--;)
+    {
+      heap(A, i);
+    }
+}
+
+void heap(A, i)
+{
+  int left=i*2;
+  int right=left+1;
+  if !((left<=n && A[left]>A[i]))
+      left=i;//left=largest
+  if(right<-n && A[right]>A[left])
+    left=right;//left=largest of the two
+
+  if (left!=i)
+    {
+      int temp=A[i];
+      A[i]=A[left];
+      A[left]=temp;
+      heap(A, left);
+    }
+  
+}
